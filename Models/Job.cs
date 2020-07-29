@@ -20,5 +20,6 @@ namespace ConnectionPoint.Models
         
         [Required]
         public int ManagerId { get; set; }
+        public UserProfile Manager { get; set; }
     }
 }

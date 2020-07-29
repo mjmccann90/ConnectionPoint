@@ -12,9 +12,12 @@ namespace ConnectionPoint.Models
 
         [Required]
         public int ApplicantPersonalityTypeId { get; set; }
+        public PersonalityType ApplicantPersonalityType { get; set; }
 
         [Required]
         public int ManagerPersonalityTypeId { get; set; }
+        public PersonalityType ManagerPersonalityType { get; set; }
+
 
         [Required]
         [MaxLength(20)]
