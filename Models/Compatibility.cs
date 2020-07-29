@@ -10,8 +10,10 @@ namespace ConnectionPoint.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public int ApplicantPersonalityTypeId { get; set; }
 
+        [Required]
         public int ManagerPersonalityTypeId { get; set; }
 
         [Required]

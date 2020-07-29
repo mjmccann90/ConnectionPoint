@@ -9,9 +9,11 @@ namespace ConnectionPoint.Models
     public class JobApplication
     {
         public int Id { get; set; }
-
+     
+        [Required]
         public int ApplicationId { get; set; }
 
+        [Required]
         public int JobId { get; set; }
 
         [Required]
