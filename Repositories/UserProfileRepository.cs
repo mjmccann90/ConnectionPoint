@@ -26,5 +26,17 @@ namespace ConnectionPoint.Repositories
             _context.Add(userProfile);
             _context.SaveChanges();
         }
+
+        public bool IsCurrentUserManager(UserProfile userProfile)
+        {
+            if (userProfile.UserTypeId == UserType.ADMIN_TYPE_ID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
