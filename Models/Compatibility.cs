@@ -23,7 +23,6 @@ namespace ConnectionPoint.Models
         [MaxLength(20)]
         public string CompatibilityScore { get; set; }
 
-        [Required]
         [MaxLength(4000)]
         public string ScoreExplanation { get; set; }
     }

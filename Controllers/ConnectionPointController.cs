@@ -13,16 +13,15 @@ namespace ConnectionPoint.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobController : ControllerBase
+    public class ConnectionPointController : ControllerBase
     {
         private readonly UserProfileRepository _userProfileRepository;
-        private readonly JobRepository _jobRepository;
+        private readonly CompatibilityRepository _compatibilityRepository;
 
-
-        public JobController(ApplicationDbContext context)
+        public ConnectionPointController(ApplicationDbContext context)
         {
             _userProfileRepository = new UserProfileRepository(context);
-            _jobRepository = new JobRepository(context);
+            _compatibilityRepository = new CompatibilityRepository(context);
 
         }
 
@@ -32,11 +31,11 @@ namespace ConnectionPoint.Controllers
             UserProfile currentUserProfile = GetCurrentUserProfile();
             if (_userProfileRepository.IsCurrentUserManager(currentUserProfile))
             {
-                return Ok(_jobRepository.GetAll());
+                return Ok(_compatibilityRepository.GetAll());
             }
             else
             {
-                return Ok(_jobRepository.GetOpenJobs(currentUserProfile.Id));
+                return Ok(_compatibilityRepository.GetConnectionPointsForApplicantId(currentUserProfile.Id));
             }
         }
 
@@ -47,32 +46,6 @@ namespace ConnectionPoint.Controllers
             //var firebaseUserId = "ku60n3epn6"; //applicant with no job applications
             //var firebaseUserId = "5kst523k5t";
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
-        }
-
-        [HttpPost]
-        public IActionResult Post(Job job)
-        {
-            _jobRepository.Add(job);
-            return CreatedAtAction("Get", new { id = job.Id }, job);
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Job job)
-        {
-            if (id != job.Id)
-            {
-                return BadRequest();
-            }
-
-            _jobRepository.Update(job);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            _jobRepository.Delete(id);
-            return NoContent();
         }
     }
 }
