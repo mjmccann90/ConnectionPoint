@@ -7,19 +7,26 @@ import Header from "../src/components/Header"
 import { JobProvider } from './providers/JobProvider';
 import { ApplicationProvider } from './providers/ApplicationProvider';
 import { CompatibilityProvider } from './providers/CompatibilityProvider';
+import { UserTypeProvider } from './providers/UserTypeProvider'
+import { PersonalityTypeProvider } from './providers/PersonalityTypeProvider'
+
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
-        <JobProvider>
-          <ApplicationProvider>
-            <CompatibilityProvider>
-                <Header/>
-                <ApplicationViews />
-            </CompatibilityProvider>
-          </ApplicationProvider>
-        </JobProvider>
+        <UserTypeProvider>
+          <PersonalityTypeProvider>
+            <JobProvider>
+              <ApplicationProvider>
+                <CompatibilityProvider>
+                    <Header/>
+                    <ApplicationViews />
+                </CompatibilityProvider>
+              </ApplicationProvider>
+            </JobProvider>
+          </PersonalityTypeProvider>
+        </UserTypeProvider>
       </UserProfileProvider>
     </Router>
   );

@@ -9,7 +9,7 @@ export const UserTypeProvider = (props) => {
 
     const apiUrl = '/api/userType'
 
-    const getUserTypes = (id) => {
+    const getUserType = (id) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
                 method: "GET",
@@ -33,7 +33,7 @@ export const UserTypeProvider = (props) => {
 
     return (
         <UserTypeContext.Provider value={{
-            userType, getAllUserType, getUserTypes
+            userType, getAllUserType, getUserType
         }}>
             {props.children}
         </UserTypeContext.Provider>
