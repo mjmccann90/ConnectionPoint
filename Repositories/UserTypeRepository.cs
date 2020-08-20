@@ -1,6 +1,5 @@
 ﻿using ConnectionPoint.Data;
 using ConnectionPoint.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace ConnectionPoint.Repositories
 {
-    public class PersonalityTypeRepository
+    public class UserTypeRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public PersonalityTypeRepository(ApplicationDbContext context)
+        public UserTypeRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // Gets all the PersonalityTypes 
-        public List<PersonalityType> GetAll()
+        public List<UserType> GetAll()
         {
-            return _context.PersonalityType
+            return _context.UserType
                 .ToList();
         }
     }

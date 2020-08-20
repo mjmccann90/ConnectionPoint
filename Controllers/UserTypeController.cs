@@ -11,21 +11,21 @@ namespace ConnectionPoint.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonalityTypeController : ControllerBase
+    public class UserTypeController : ControllerBase
     {
-        private readonly PersonalityTypeRepository _personalityTypeRepository;
+        private readonly UserTypeRepository _userTypeRepository;
 
 
-        public PersonalityTypeController(ApplicationDbContext context)
+        public UserTypeController(ApplicationDbContext context)
         {
-            _personalityTypeRepository = new PersonalityTypeRepository(context);
+            _userTypeRepository = new UserTypeRepository(context);
 
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personalityTypeRepository.GetAll());
+            return Ok(_userTypeRepository.GetAll());
         }
     }
 }

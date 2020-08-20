@@ -22,7 +22,8 @@ namespace ConnectionPoint.Models
         public int UserTypeId { get; set; }
 
         public UserType UserType { get; set; }
-
+        
+        [Required]
         public int PersonalityTypeId { get; set; }
         public PersonalityType PersonalityType { get; set; }
 
