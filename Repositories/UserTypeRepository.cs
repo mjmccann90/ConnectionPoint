@@ -22,5 +22,11 @@ namespace ConnectionPoint.Repositories
             return _context.UserType
                 .ToList();
         }
+
+        public UserType GetById(int id)
+        {
+            return _context.UserType
+                .First(uT => uT.Id == id);
+        }
     }
 }

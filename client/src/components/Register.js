@@ -14,25 +14,25 @@ export default function Register() {
 
 
 
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  // const [userType, setUserType] = useState();
-  // const [personalityType, setPersonalityType] = useState();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [userTypeId, setUserType] = useState("");
+  const [personalityTypeId, setPersonalityType] = useState("");
 
   useEffect(() => {
     getAllUserType()
     getAllPersonalityType()
 }, []);
 
-console.log(userType)
+
   const registerClick = (e) => {
     e.preventDefault();
     if (password && password !== confirmPassword) {
       alert("Passwords don't match. Do better.");
     } else {
-      const userProfile = { name, email};
+      const userProfile = { name, email, userTypeId, personalityTypeId};
       register(userProfile, password)
         .then(() => history.push("/"));
     }
@@ -66,6 +66,7 @@ console.log(userType)
                         ref={userType}
                         id="userTypeSelectId"
                         className="form-control"
+                        onChange={e => setUserType(e.target.value)}
                     >
                         <option value=
                         "0">Select whether you are manager or job seeker</option>
@@ -89,6 +90,8 @@ console.log(userType)
                         ref={personalityType}
                         id="personalityTypeSelecId"
                         className="form-control"
+                        onChange={e => setPersonalityType(e.target.value)}
+
                     >
                         <option value="0">Select your personality type</option>
                         (personalityType.length)
