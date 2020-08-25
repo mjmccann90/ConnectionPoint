@@ -7,9 +7,17 @@ export const UserProfileContext = createContext();
 
 export function UserProfileProvider(props) {
   const apiUrl = "/api/userprofile";
-
   const userProfile = sessionStorage.getItem("userProfile");
   const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
+  const [isAdmin, setAdmin] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedIn && userProfile.userTypeId === 1) {
+      setAdmin(true);
+    }
+  }, []);
+
+  const [userProfiles, setUserProfiles] = useState([]);
 
   const [isFirebaseReady, setIsFirebaseReady] = useState(false);
   useEffect(() => {
@@ -19,41 +27,51 @@ export function UserProfileProvider(props) {
   }, []);
 
   const login = (email, pw) => {
-    return firebase.auth().signInWithEmailAndPassword(email, pw)
-      .then((signInResponse) => getUserProfile(signInResponse.user.uid))
+    return firebase
+      .auth()
+      .signInWithEmailAndPassword(email, pw)
+      .then((signInResponse) => getUserProfiles(signInResponse.user.uid))
       .then((userProfile) => {
         sessionStorage.setItem("userProfile", JSON.stringify(userProfile));
-        setIsLoggedIn(true);
+
       });
   };
 
-  const logout = () => {
-    return firebase.auth().signOut()
-      .then(() => {
-        sessionStorage.clear()
-        setIsLoggedIn(false);
-      });
-  };
+  // const logout = () => {
+  //   return firebase
+  //     .auth()
+  //     .signOut()
+  //     .then(() => {
+  //       sessionStorage.clear();
+  //       setIsLoggedIn(false);
+  //       setAdmin(false);
+  //     });
+  // };
 
   const register = (userProfile, password) => {
-    return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
-      .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(userProfile.email, password)
+      .then((createResponse) =>
+        saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid })
+      )
       .then((savedUserProfile) => {
-        sessionStorage.setItem("userProfile", JSON.stringify(savedUserProfile))
+        sessionStorage.setItem("userProfile", JSON.stringify(savedUserProfile));
         setIsLoggedIn(true);
       });
   };
-
+ 
   const getToken = () => firebase.auth().currentUser.getIdToken();
 
-  const getUserProfile = (firebaseUserId) => {
+  const getUserProfiles = (firebaseUserId) => {
     return getToken().then((token) =>
       fetch(`${apiUrl}/${firebaseUserId}`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(resp => resp.json()));
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((resp) => resp.json())
+    );
   };
 
   const saveUser = (userProfile) => {
@@ -62,14 +80,29 @@ export function UserProfileProvider(props) {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(userProfile)
-      }).then(resp => resp.json()));
+        body: JSON.stringify(userProfile),
+      }).then((resp) => resp.json())
+    );
+  };
+
+  const getUserProfileById = (id) => {
+    return getToken().then((token) =>
+      fetch(`${apiUrl}/id/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((resp) => resp.json())
+    );
   };
 
   return (
-    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken }}>
+    <UserProfileContext.Provider value={{ isLoggedIn, login, register, getToken,  getUserProfileById,
+      isAdmin,
+      getUserProfiles,
+      userProfiles }}>
       {isFirebaseReady
         ? props.children
         : <Spinner className="app-spinner dark"/>}

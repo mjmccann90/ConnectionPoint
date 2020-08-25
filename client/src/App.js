@@ -9,6 +9,7 @@ import { ApplicationProvider } from './providers/ApplicationProvider';
 import { CompatibilityProvider } from './providers/CompatibilityProvider';
 import { UserTypeProvider } from './providers/UserTypeProvider'
 import { PersonalityTypeProvider } from './providers/PersonalityTypeProvider'
+import { ManagerViewProvider } from './providers/ManagerViewProvider';
 
 
 function App() {
@@ -18,12 +19,14 @@ function App() {
         <UserTypeProvider>
           <PersonalityTypeProvider>
             <JobProvider>
-              <ApplicationProvider>
-                <CompatibilityProvider>
-                    <Header/>
-                    <ApplicationViews />
-                </CompatibilityProvider>
-              </ApplicationProvider>
+              <ManagerViewProvider>
+                <ApplicationProvider>
+                  <CompatibilityProvider>
+                      <Header/>
+                      <ApplicationViews />
+                  </CompatibilityProvider>
+                </ApplicationProvider>
+              </ManagerViewProvider>
             </JobProvider>
           </PersonalityTypeProvider>
         </UserTypeProvider>
