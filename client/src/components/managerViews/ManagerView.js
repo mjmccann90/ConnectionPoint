@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card, CardBody } from "reactstrap";
-//import { ManagerViewContext } from "../../providers/ManagerViewJobProvider"
+// import { ManagerViewContext } from "../../providers/ManagerViewProvider"
 // import { ApplicationContext } from "../../providers/ApplicationProvider"
 import { Link } from "react-router-dom";
 
 
 
-const ManagerView = ({ job }) => {
+const Job = ({ job }) => {
   return (
     <Card className="m-4">
       <CardBody>
@@ -22,4 +22,4 @@ const ManagerView = ({ job }) => {
   );
 };
 
-export default ManagerView;
+export default Job;
