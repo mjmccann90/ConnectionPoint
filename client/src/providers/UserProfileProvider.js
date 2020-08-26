@@ -33,20 +33,23 @@ export function UserProfileProvider(props) {
       .then((signInResponse) => getUserProfiles(signInResponse.user.uid))
       .then((userProfile) => {
         sessionStorage.setItem("userProfile", JSON.stringify(userProfile));
-
+        setIsLoggedIn(true)
+        if (userProfile.userTypeId == 1) {
+          setAdmin(true)
+        }
       });
   };
 
-  // const logout = () => {
-  //   return firebase
-  //     .auth()
-  //     .signOut()
-  //     .then(() => {
-  //       sessionStorage.clear();
-  //       setIsLoggedIn(false);
-  //       setAdmin(false);
-  //     });
-  // };
+   const logout = () => {
+     return firebase
+       .auth()
+       .signOut()
+       .then(() => {
+         sessionStorage.clear();
+         setIsLoggedIn(false);
+         setAdmin(false);
+       });
+   };
 
   const register = (userProfile, password) => {
     return firebase

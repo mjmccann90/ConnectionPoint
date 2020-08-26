@@ -1,12 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import ManagerView from "./ManagerView";
 import { ManagerViewContext } from "../../providers/ManagerViewProvider";
+import { JobContext } from "../../providers/JobProvider";
+
 
 export default function ManagerViewList() {
-  const { jobsManagerViews, managerViewRefreshJobs } = useContext(ManagerViewContext);
+  const { jobsManagerViews } = useContext(ManagerViewContext);
+  const { refreshJobs } = useContext(JobContext);
+
 
   useEffect(() => {
-    managerViewRefreshJobs();
+    refreshJobs();
   }, []);
 
   return (

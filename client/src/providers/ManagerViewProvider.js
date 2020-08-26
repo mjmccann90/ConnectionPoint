@@ -9,16 +9,17 @@ export function ManagerViewProvider (props) {
 
   const [jobsManagerViews, setManagerViewJobs] = useState([]);
 
-  const managerViewRefreshJobs = () =>
-    getToken().then((token) =>
-      fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(resp => resp.json())
-        .then(setManagerViewJobs));
-
+  // const managerViewRefreshJobs = () => {
+  
+  //   return getToken().then((token) =>
+  //     fetch(apiUrl, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     }).then(resp => resp.json())
+  //       .then(setManagerViewJobs));
+  //   }
 
 
 
@@ -78,7 +79,7 @@ export function ManagerViewProvider (props) {
     };
 
   return (
-    <ManagerViewContext.Provider value={{ jobsManagerViews, managerViewRefreshJobs, addManagerViewJob, getManagerViewJob, deleteManagerViewJob, updateManagerViewJob }}>
+    <ManagerViewContext.Provider value={{ jobsManagerViews, addManagerViewJob, getManagerViewJob, deleteManagerViewJob, updateManagerViewJob }}>
       {props.children}
     </ManagerViewContext.Provider>
   );

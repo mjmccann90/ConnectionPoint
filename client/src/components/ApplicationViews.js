@@ -5,7 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import JobList from "../components/jobs/JobList"
 import ManagerViewList from "../components/managerViews/ManagerViewList"
-import ApplicationList from "../components/application/ApplicationList"
+// import ApplicationList from "../components/application/ApplicationList"
 import ConnectionPointList from "../components/connectionPoint/ConnectPointList"
 
 export default function ApplicationViews() {
@@ -22,12 +22,11 @@ export default function ApplicationViews() {
           {(isLoggedIn && isAdmin) && <ManagerViewList />}
         </Route> */}
 
-        <Route path="/application" exact>
+        {/* <Route path="/application" exact>
           {isLoggedIn ? <ApplicationList /> : <Redirect to="/login" />}
-        </Route>
+        </Route> */}
 
-        <Route path="/managerView" exact>git status
-        
+        <Route path="/managerView" exact>
           {isLoggedIn && isAdmin ? <ManagerViewList /> : <Redirect to="/login" />}
         </Route>
 

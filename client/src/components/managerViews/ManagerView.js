@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody } from "reactstrap";
 //import { ManagerViewContext } from "../../providers/ManagerViewJobProvider"
 // import { ApplicationContext } from "../../providers/ApplicationProvider"
-//import { Link } from "./node_modules/react-router-dom";
+import { Link } from "react-router-dom";
 
 
 

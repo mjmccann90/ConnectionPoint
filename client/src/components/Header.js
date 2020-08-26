@@ -16,7 +16,7 @@ import { UserProfileContext } from '../providers/UserProfileProvider';
 
 
 export default function Header() {
-    const { isLoggedIn, logout } = useContext(UserProfileContext);
+    const { isLoggedIn, logout, isAdmin } = useContext(UserProfileContext);
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     return (
@@ -26,14 +26,38 @@ export default function Header() {
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        {isLoggedIn &&
+                        {isLoggedIn && !isAdmin && 
                             <>
                                 <NavItem>
                                     <NavLink tag={RRNavLink} to="/">Jobs</NavLink>
                                 </NavItem>
-                                <NavItem>
+
+
+
+                                {/* <NavItem>
                                     <NavLink tag={RRNavLink} to="/application">Applications</NavLink>
+                                </NavItem> */}
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/connectionPoint">ConnectionPoint</NavLink>
                                 </NavItem>
+                            </>
+                        }
+
+                        {isLoggedIn && isAdmin &&
+                            <>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/">Jobs</NavLink>
+                                </NavItem>
+
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/managerView">ManagerView</NavLink>
+                                </NavItem>
+
+
+
+                                {/* <NavItem>
+                                    <NavLink tag={RRNavLink} to="/application">Applications</NavLink>
+                                </NavItem> */}
                                 <NavItem>
                                     <NavLink tag={RRNavLink} to="/connectionPoint">ConnectionPoint</NavLink>
                                 </NavItem>
