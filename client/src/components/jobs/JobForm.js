@@ -30,16 +30,7 @@ const JobForm = () => {
         <div className="cards-column">
           <Card>
             <CardBody>
-              <h3 className="text-center mb-3">Add Job</h3>
               <Form onSubmit={submit}>
-                <FormGroup row>
-                  <Col>
-                    <Input
-                      placeholder="User ID"
-                      onChange={(e) => setUserProfileId(e.target.value)}
-                    />
-                  </Col>
-                </FormGroup>
                 <FormGroup row>
                   <Col>
                     <Input

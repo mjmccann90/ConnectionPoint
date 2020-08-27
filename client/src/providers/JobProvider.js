@@ -44,7 +44,7 @@ export function JobProvider (props) {
         );
     }
 
-    const addJob = (newJob) =>
+    const addJob = (job) =>
     getToken().then((token) =>
       fetch(apiUrl, {
         method: "POST",
@@ -52,7 +52,7 @@ export function JobProvider (props) {
           Authorization: `Bearer ${token}`,
           "Content-Type": "managerView/json"
         },
-        body: JSON.stringify(newJob)
+        body: JSON.stringify(job)
       }).then(resp => {
         if (resp.ok) {
           return resp.json();
