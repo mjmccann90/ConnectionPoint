@@ -9,39 +9,6 @@ export function ManagerViewProvider (props) {
 
   const [jobsManagerViews, setManagerViewJobs] = useState([]);
 
-  // const managerViewRefreshJobs = () => {
-  
-  //   return getToken().then((token) =>
-  //     fetch(apiUrl, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     }).then(resp => resp.json())
-  //       .then(setManagerViewJobs));
-  //   }
-
-
-
-
-  const addManagerViewJob = (job) =>
-    getToken().then((token) =>
-      fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "managerView/json"
-        },
-        body: JSON.stringify(job)
-      }).then(resp => {
-        if (resp.ok) {
-          return resp.json();
-        }
-        throw new Error("Unauthorized");
-      }));
-
-
-
       const getManagerViewJob = (id) => {
         getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
@@ -55,17 +22,7 @@ export function ManagerViewProvider (props) {
     }
 
 
-    const deleteManagerViewJob = (id) =>{
-        return getToken().then((token) =>
-            fetch(`${apiUrl}/${id}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "managerView/json"
-                }
-            })
-        );
-    }
+    
     const updateManagerViewJob = (managerView) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${managerView.id}`, {
@@ -79,7 +36,7 @@ export function ManagerViewProvider (props) {
     };
 
   return (
-    <ManagerViewContext.Provider value={{ jobsManagerViews, addManagerViewJob, getManagerViewJob, deleteManagerViewJob, updateManagerViewJob }}>
+    <ManagerViewContext.Provider value={{ jobsManagerViews, getManagerViewJob, updateManagerViewJob }}>
       {props.children}
     </ManagerViewContext.Provider>
   );

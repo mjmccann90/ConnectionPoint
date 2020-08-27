@@ -15,7 +15,6 @@ export default function ManagerViewList() {
 
   return (
     <section>
-      <h1>this is the manager view!</h1>
       {jobs.map(j =>
         <ManagerView key={j.id} job={j}/>
       )} 

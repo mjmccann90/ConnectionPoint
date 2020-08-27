@@ -1,12 +1,21 @@
-import React from 'react';
-import { Card, CardBody } from "reactstrap";
-// import { ManagerViewContext } from "../../providers/ManagerViewProvider"
+import React, { useState, useContext } from "react"
+import { Card, CardBody, Button } from "reactstrap";
+import { ManagerViewContext } from "../../providers/ManagerViewProvider"
+import { JobContext } from "../../providers/JobProvider"
+
 // import { ApplicationContext } from "../../providers/ApplicationProvider"
 import { Link } from "react-router-dom";
 
 
 
 const Job = ({ job }) => {
+  const [modal, setModal] = useState(false)
+  const toggle = () => setModal(!modal)
+
+  const { deleteJob } = useContext(JobContext)
+  const { jobManager } = useContext(ManagerViewContext)
+  //const { deleteManagerViewJob } = useContext(ManagerViewContext)
+
   return (
     <Card className="m-4">
       <CardBody>
@@ -16,7 +25,11 @@ const Job = ({ job }) => {
         <p>{job.description}</p>
       </CardBody>
 
-      {/* <Button color="secondary" size="sm" className="ml-2" outline><Link to={`/application/`} className="linkText">Apply</Link></Button> */}
+       <Button color="secondary" size="sm" className="ml-2" outline><Link to={`/application/`} className="linkText">Edit</Link></Button> 
+       <Button outline color="danger" onClick={() => {
+                deleteJob(job.id)
+                toggle()
+            }}>Delete</Button>
       
     </Card>
   );

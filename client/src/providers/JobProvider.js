@@ -20,6 +20,18 @@ export function JobProvider (props) {
         .then(setJobs));
 
 
+        const deleteJob = (id) =>{
+          return getToken().then((token) =>
+              fetch(`${apiUrl}/${id}`, {
+                  method: "DELETE",
+                  headers: {
+                      Authorization: `Bearer ${token}`,
+                      "Content-Type": "job/json"
+                  }
+              })
+          );
+      }
+
       const getJob = (id) => {
         getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
@@ -32,9 +44,25 @@ export function JobProvider (props) {
         );
     }
 
+    const addJob = (newJob) =>
+    getToken().then((token) =>
+      fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "managerView/json"
+        },
+        body: JSON.stringify(newJob)
+      }).then(resp => {
+        if (resp.ok) {
+          return resp.json();
+        }
+        throw new Error("Unauthorized");
+      }));
+
 
   return (
-    <JobContext.Provider value={{ jobs, refreshJobs, getJob }}>
+    <JobContext.Provider value={{ jobs, deleteJob,addJob, refreshJobs, getJob }}>
       {props.children}
     </JobContext.Provider>
   );
