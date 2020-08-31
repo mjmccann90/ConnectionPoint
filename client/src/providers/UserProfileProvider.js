@@ -102,7 +102,7 @@ export function UserProfileProvider(props) {
   };
 
   return (
-    <UserProfileContext.Provider value={{ isLoggedIn, login, register, getToken,  getUserProfileById,
+    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken,  getUserProfileById,
       isAdmin,
       getUserProfiles,
       userProfiles }}>
