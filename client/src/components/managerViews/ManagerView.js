@@ -12,7 +12,7 @@ const Job = ({ job }) => {
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
 
-  const { deleteJob } = useContext(JobContext)
+  const { deleteJob, refreshJobs } = useContext(JobContext)
   const { jobManager } = useContext(ManagerViewContext)
   //const { deleteManagerViewJob } = useContext(ManagerViewContext)
 
@@ -27,7 +27,7 @@ const Job = ({ job }) => {
 
        <Button color="secondary" size="sm" className="ml-2" outline><Link to={`/application/`} className="linkText">Edit</Link></Button> 
        <Button outline color="danger" onClick={() => {
-                deleteJob(job.id)
+                deleteJob(job.id).then(refreshJobs)
                 toggle()
             }}>Delete</Button>
       

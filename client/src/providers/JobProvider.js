@@ -50,14 +50,9 @@ export function JobProvider (props) {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "managerView/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(job)
-      }).then(resp => {
-        if (resp.ok) {
-          return resp.json();
-        }
-        throw new Error("Unauthorized");
       }));
 
 

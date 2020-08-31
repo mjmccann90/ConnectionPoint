@@ -13,13 +13,16 @@ import {
 const JobForm = () => {
   const { addJob, refreshJobs } = useContext(JobContext);
   const [title, setTitle] = useState("");
-  const [desciption, setDesciption] = useState("");
-  const [userProfileId, setUserProfileId] = useState("");
+  const [description, setDescription] = useState("");
+  const userProfile = sessionStorage.getItem("userProfile");
+
 
   const submit = (e) => {
     e.preventDefault();
 
-    const job = { title, desciption, userProfileId };
+    const job = {
+      title,
+      description};
 
     addJob(job).then(refreshJobs);
   };
@@ -41,7 +44,7 @@ const JobForm = () => {
                   <Col>
                     <Input
                       placeholder="Desciption"
-                      onChange={(e) => setDesciption(e.target.value)}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </Col>
                 </FormGroup>
