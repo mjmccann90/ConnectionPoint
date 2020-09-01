@@ -43,7 +43,7 @@ const JobForm = () => {
                   </Col>
                   <Col>
                     <Input
-                      placeholder="Desciption"
+                      placeholder="Description"
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </Col>

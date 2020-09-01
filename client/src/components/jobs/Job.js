@@ -14,10 +14,12 @@ const Job = ({ job }) => {
                 <strong>{job.title}</strong>
         </p>
         <p>{job.description}</p>
+        <h7>
+          <a href="mailto:mjmccann12@me.com">
+            <span class="label">Email your resume</span>
+          </a>
+        </h7>
       </CardBody>
-
-      
-      
     </Card>
   );
 };

@@ -55,9 +55,20 @@ export function JobProvider (props) {
         body: JSON.stringify(job)
       }));
 
+      const updateJob = (id, job) => {
+        return getToken().then((token) =>
+        fetch(`${apiUrl}/${id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(job)
+        })).then(refreshJobs);
+    };
 
   return (
-    <JobContext.Provider value={{ jobs, deleteJob,addJob, refreshJobs, getJob }}>
+    <JobContext.Provider value={{ jobs, deleteJob,addJob, refreshJobs, getJob, updateJob }}>
       {props.children}
     </JobContext.Provider>
   );
