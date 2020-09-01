@@ -16,7 +16,7 @@ const EditJobForm = ({ toggleEdit, Job }) => {
         updateJob(
             Job.id,
             {
-                userProfileId: Job.userProfileId,
+                managerId: Job.managerId,
                 id: Job.id,
                 title: title.current.value,
                 description: description.current.value

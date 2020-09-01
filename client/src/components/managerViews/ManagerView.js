@@ -17,7 +17,6 @@ const Job = ({ job }) => {
     const toggleEdit = () => setEditModal(!editModal)
 
   const { deleteJob, refreshJobs } = useContext(JobContext)
-  const { jobManager } = useContext(ManagerViewContext)
   //const { deleteManagerViewJob } = useContext(ManagerViewContext)
 
   return (
@@ -29,7 +28,9 @@ const Job = ({ job }) => {
         <p>{job.description}</p>
       </CardBody>
 
-       <Button color="secondary" size="sm" className="ml-2" outline><Link to={`/application/`} className="linkText">Edit</Link></Button> 
+       <Button color="secondary" size="sm" className="ml-2" outline onClick={toggleEdit}>Edit</Button>
+
+
        <Button outline color="danger" onClick={() => {
                 deleteJob(job.id).then(refreshJobs)
                 toggle()
@@ -38,7 +39,7 @@ const Job = ({ job }) => {
       <Modal isOpen={editModal} className="modal-md">
           <ModalHeader>Edit Job</ModalHeader>
           <ModalBody>
-              <EditJobForm Job={Job} toggleEdit={toggleEdit} />
+              <EditJobForm Job={job} toggleEdit={toggleEdit} />
           </ModalBody>
       </Modal>
     </Card>
