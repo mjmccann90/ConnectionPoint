@@ -38,7 +38,7 @@ export default function Header() {
                                     <NavLink tag={RRNavLink} to="/application">Applications</NavLink>
                                 </NavItem> */}
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/connectionPoint">ConnectionPoint</NavLink>
+                                    <NavLink tag={RRNavLink} to="/compatiblity">Compatibilty</NavLink>
                                 </NavItem>
                             </>
                         }
@@ -59,7 +59,7 @@ export default function Header() {
                                     <NavLink tag={RRNavLink} to="/application">Applications</NavLink>
                                 </NavItem> */}
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/connectionPoint">ConnectionPoint</NavLink>
+                                    <NavLink tag={RRNavLink} to="/compatiblity">Compatiblity</NavLink>
                                 </NavItem>
                             </>
                         }

@@ -6,7 +6,7 @@ import Register from "./Register";
 import JobList from "../components/jobs/JobList"
 import ManagerViewList from "../components/managerViews/ManagerViewList"
 // import ApplicationList from "../components/application/ApplicationList"
-import ConnectionPointList from "../components/connectionPoint/ConnectPointList"
+import ConnectionPointList from "./compatiablity/ConnectionPointList"
 
 export default function ApplicationViews() {
   const { isLoggedIn, isAdmin } = useContext(UserProfileContext);
@@ -30,7 +30,7 @@ export default function ApplicationViews() {
           {isLoggedIn && isAdmin ? <ManagerViewList /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/compatibility" exact>
+        <Route path="/compatiblity" exact>
           {isLoggedIn ? <ConnectionPointList /> : <Redirect to="/login" />}
         </Route>
 

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react"
 import { Card, CardBody, Modal, Button, ModalHeader, ModalBody } from "reactstrap";
-import { ManagerViewContext } from "../../providers/ManagerViewProvider"
 import { JobContext } from "../../providers/JobProvider"
 import EditJobForm from "../jobs/EditJobForm"
 
