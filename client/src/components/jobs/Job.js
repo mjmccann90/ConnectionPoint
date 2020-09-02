@@ -21,7 +21,7 @@ const Job = ({ job }) => {
         </p>
         <p>{job.description}</p>
         <h7>
-          <a href="mailto:{job.manager.email}">
+          <a href={`mailto:${job.manager.email}`}>
             <span class="label">Email your resume</span>
           </a>
         </h7>

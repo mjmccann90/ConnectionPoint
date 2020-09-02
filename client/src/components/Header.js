@@ -45,9 +45,6 @@ export default function Header() {
 
                         {isLoggedIn && isAdmin &&
                             <>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/">Jobs</NavLink>
-                                </NavItem>
 
                                 <NavItem>
                                     <NavLink tag={RRNavLink} to="/managerView">ManagerView</NavLink>

@@ -21,6 +21,9 @@ const Job = ({ job }) => {
   return (
     <Card className="m-4">
       <CardBody>
+      <p>
+                <strong>Posted by: {job.manager.name}</strong>
+        </p>
         <p>
                 <strong>{job.title}</strong>
         </p>

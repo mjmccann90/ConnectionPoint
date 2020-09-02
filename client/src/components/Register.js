@@ -71,7 +71,6 @@ export default function Register() {
                         <option value=
                         "0">Select whether you are manager or job seeker</option>
                         (userType.length)
-                        
                         {userType.map(ut => (
                             <option key={ut.id} value={ut.id}>
                                 {ut.name}
@@ -104,37 +103,6 @@ export default function Register() {
                 </div>
           </fieldset>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {/* <FormGroup>
-          <Label for="userTypeSelect">Select</Label>
-          <Input type="select" name="select" id="userTypeSelect">
-            <option value="0">Select whether you are a manager or job seeker</option>
-          </Input>
-      </FormGroup>
-
-      <FormGroup>
-        <Label for="personalityTypeSelect">Select</Label>
-          <Input type="select" name="select" id="personalityTypeSelect">
-            <option>1</option>
-          </Input>
-      </FormGroup> */}
 
         <FormGroup>
           <Button>Register</Button>

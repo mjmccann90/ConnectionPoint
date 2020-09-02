@@ -9,7 +9,9 @@ import JobForm from "../jobs/JobForm"
 
 export default function ManagerViewList() {
   const { jobsManagerViews } = useContext(ManagerViewContext);
-  const { jobs, refreshJobs } = useContext(JobContext);
+  const { jobs, getJobByManager, setJobs, myJobs } = useContext(JobContext);
+  const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+
 
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
@@ -17,7 +19,7 @@ export default function ManagerViewList() {
 
 
   useEffect(() => {
-    refreshJobs();
+    getJobByManager(userProfile.id)
   }, []);
 
   return (
@@ -29,7 +31,7 @@ export default function ManagerViewList() {
         }}>New Job</Button>
 
       <section>
-        {jobs.map(j =>
+        {myJobs.map(j =>
           <ManagerView key={j.id} job={j}/>
         )} 
       </section>

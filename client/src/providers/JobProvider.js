@@ -8,6 +8,7 @@ export function JobProvider (props) {
   const { getToken } = useContext(UserProfileContext);
 
   const [jobs, setJobs] = useState([]);
+  const [myJobs, setMyJobs] = useState([]);
 
   const refreshJobs = () =>
     getToken().then((token) =>
@@ -32,7 +33,7 @@ export function JobProvider (props) {
           );
       }
 
-      const getJob = (id) => {
+      const getJobByManager = (id) => {
         getToken().then((token) =>
             fetch(`${apiUrl}/${id}`, {
                 method: "GET",
@@ -41,6 +42,8 @@ export function JobProvider (props) {
                     "Content-Type": "application/json"
                 },
             }).then((res) => res.json())
+            .then(setMyJobs)
+
         );
     }
 
@@ -68,7 +71,7 @@ export function JobProvider (props) {
     };
 
   return (
-    <JobContext.Provider value={{ jobs, deleteJob,addJob, refreshJobs, getJob, updateJob }}>
+    <JobContext.Provider value={{ jobs, deleteJob,addJob, refreshJobs, getJobByManager, updateJob, setJobs,myJobs, setMyJobs }}>
       {props.children}
     </JobContext.Provider>
   );
