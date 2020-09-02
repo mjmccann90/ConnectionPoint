@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 
-import { CompatibilityContext, CompatibilityProvider } from "../../providers/CompatibilityProvider"
+import { CompatibilityContext } from "../../providers/CompatibilityProvider"
 import { JobContext } from "../../providers/JobProvider";
 import { UserTypeContext } from "../../providers/UserTypeProvider"
 import {PersonalityTypeContext} from "../../providers/PersonalityTypeProvider"
