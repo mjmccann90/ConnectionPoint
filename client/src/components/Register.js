@@ -96,6 +96,9 @@ export default function Register() {
                         ))}
                     </select>
                 </div>
+                <div className="16andMe">Don't know your personality type?
+                  <a href="https://www.16personalities.com/" target="_blank"> Find out here!</a>
+                </div>
           </fieldset>
 
 

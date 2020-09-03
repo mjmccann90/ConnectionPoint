@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+  
+body {
+  background: url("./components/images/brickwall_@2X.png");
+  opacity: 0.9;
+}
