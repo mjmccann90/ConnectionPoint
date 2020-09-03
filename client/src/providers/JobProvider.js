@@ -6,6 +6,8 @@ export const JobContext = createContext();
 export function JobProvider (props) {
   const apiUrl = "/api/job";
   const { getToken } = useContext(UserProfileContext);
+  const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+
 
   const [jobs, setJobs] = useState([]);
   const [myJobs, setMyJobs] = useState([]);
@@ -30,6 +32,7 @@ export function JobProvider (props) {
                       "Content-Type": "job/json"
                   }
               })
+              .then(() => getJobByManager(userProfile.id))
           );
       }
 
@@ -43,7 +46,6 @@ export function JobProvider (props) {
                 },
             }).then((res) => res.json())
             .then(setMyJobs)
-            .then(refreshJobs)
 
         );
     }
@@ -57,7 +59,8 @@ export function JobProvider (props) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(job)
-      }));
+      })
+      .then(() => getJobByManager(userProfile.id)));
 
       const updateJob = (id, job) => {
         return getToken().then((token) =>

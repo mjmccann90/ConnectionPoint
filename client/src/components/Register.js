@@ -21,11 +21,6 @@ export default function Register() {
   const [userTypeId, setUserType] = useState("");
   const [personalityTypeId, setPersonalityType] = useState("");
 
-  useEffect(() => {
-    getAllUserType()
-    getAllPersonalityType()
-}, []);
-
 
   const registerClick = (e) => {
     e.preventDefault();

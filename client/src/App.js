@@ -5,7 +5,6 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import ApplicationViews from "./components/ApplicationViews";
 import Header from "../src/components/Header"
 import { JobProvider } from './providers/JobProvider';
-import { ApplicationProvider } from './providers/ApplicationProvider';
 import { CompatibilityProvider } from './providers/CompatibilityProvider';
 import { UserTypeProvider } from './providers/UserTypeProvider'
 import { PersonalityTypeProvider } from './providers/PersonalityTypeProvider'
@@ -20,12 +19,10 @@ function App() {
           <PersonalityTypeProvider>
             <JobProvider>
               <ManagerViewProvider>
-                <ApplicationProvider>
                   <CompatibilityProvider>
                       <Header/>
                       <ApplicationViews />
                   </CompatibilityProvider>
-                </ApplicationProvider>
               </ManagerViewProvider>
             </JobProvider>
           </PersonalityTypeProvider>

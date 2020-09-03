@@ -10,6 +10,7 @@ import {
     NavLink
 } from 'reactstrap';
 import { UserProfileContext } from '../providers/UserProfileProvider';
+import "./Header.css"
 
 
 
@@ -72,7 +73,7 @@ export default function Header() {
                         }
                     </Nav>
                     <NavItem>
-                        <a aria-current="page" className="nav-link"
+                        <a aria-current="page" 
                             style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
                     </NavItem>
                 </Collapse>
