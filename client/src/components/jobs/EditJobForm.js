@@ -34,7 +34,7 @@ const EditJobForm = ({ toggleEdit, Job }) => {
 
             <FormGroup>
                 <Label for="jobDescription">Job Description</Label>
-                <Input type="text" name="jobDescription" id="jobDescription" innerRef={description} defaultValue={Job.description} maxlength="2000" />
+                <Input type="textarea" name="jobDescription" id="jobDescription" innerRef={description} defaultValue={Job.description} maxlength="2000" />
             </FormGroup>
 
             <FormGroup className="text-right">

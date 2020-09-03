@@ -6,7 +6,7 @@ import {
   Input,
   Card,
   CardBody,
-  Col,
+  Label,
   Button,
 } from "reactstrap";
 
@@ -31,22 +31,23 @@ const JobForm = () => {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="cards-column">
+          
           <Card>
             <CardBody>
               <Form onSubmit={submit}>
                 <FormGroup row>
-                  <Col>
+                <Label for="title">Job Title</Label>
                     <Input
                       placeholder="Title"
                       onChange={(e) => setTitle(e.target.value)}
                     />
-                  </Col>
-                  <Col>
-                    <Input
+                  
+                  <Label for="jobDescription">Job Description</Label>
+                    <Input type="textarea" name="text"
                       placeholder="Description"
                       onChange={(e) => setDescription(e.target.value)}
                     />
-                  </Col>
+                  
                 </FormGroup>
                 <Button type="submit" className="btn-block btn-info">
                   SUBMIT
