@@ -1,7 +1,8 @@
-nav-link::marker{
-    display: none !important;
-}
 li{
     list-style-type: none
 
+}
+
+.logout{
+    color: #fff;
 }

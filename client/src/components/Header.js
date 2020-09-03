@@ -39,7 +39,7 @@ export default function Header() {
                                     <NavLink tag={RRNavLink} to="/application">Applications</NavLink>
                                 </NavItem> */}
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/compatiblity">Compatibilty</NavLink>
+                                    <NavLink tag={RRNavLink} to="/compatiblity" >Compatibilty</NavLink>
                                 </NavItem>
                             </>
                         }
@@ -72,7 +72,7 @@ export default function Header() {
                             </>
                         }
                     </Nav>
-                    <NavItem>
+                    <NavItem className="logout">
                         <a aria-current="page" 
                             style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
                     </NavItem>
