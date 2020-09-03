@@ -11,6 +11,7 @@ const Job = ({ job }) => {
   const userProfile = sessionStorage.getItem("userProfile");
 
   return (
+    <container>
     <Card className="m-4">
       <CardBody>
         <p>
@@ -27,6 +28,7 @@ const Job = ({ job }) => {
         </h7>
       </CardBody>
     </Card>
+    </container>
   );
 };
 

@@ -43,6 +43,7 @@ export function JobProvider (props) {
                 },
             }).then((res) => res.json())
             .then(setMyJobs)
+            .then(refreshJobs)
 
         );
     }

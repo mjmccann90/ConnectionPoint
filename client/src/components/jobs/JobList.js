@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Job from "../jobs/Job";
 import { JobContext } from "../../providers/JobProvider";
 import { useHistory } from "react-router-dom";
+import { Container } from "reactstrap";
 
 export default function JobList() {
   const { jobs, refreshJobs } = useContext(JobContext);
@@ -16,10 +17,12 @@ export default function JobList() {
   }, []);
 
   return (
+    <container>
     <section>
       {jobs.map(j =>
         <Job key={j.id} job={j}/>
       )}
     </section>
+    </container>
   );
 }
