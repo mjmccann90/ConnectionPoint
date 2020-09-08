@@ -2,9 +2,10 @@ import React, { useContext, useRef } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { JobContext } from "../../providers/JobProvider";
 
-const EditJobForm = ({ toggleEdit, Job }) => {
+const EditJobForm = ({ toggleEdit, Job}) => {
 
-    const { updateJob } = useContext(JobContext);
+    const { updateJob, getJobByManager } = useContext(JobContext);
+    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
    const title = useRef()
    const description = useRef()
@@ -21,7 +22,9 @@ const EditJobForm = ({ toggleEdit, Job }) => {
                 title: title.current.value,
                 description: description.current.value
 
-            })
+            }).then(()=>getJobByManager(userProfile.id)
+            )
+            
             .then(toggleEdit)
     };
 
