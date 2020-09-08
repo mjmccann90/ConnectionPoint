@@ -26,7 +26,7 @@ namespace ConnectionPoint.Repositories
                 .ToList();
         }
 
-        // Gets jobs by Manager Id
+        // Get jobs by Manager Id
         public List<Job> GetByManagerId( int managerId)
         {
             return _context.Job

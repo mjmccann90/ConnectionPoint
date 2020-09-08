@@ -13,15 +13,17 @@ namespace ConnectionPoint.Controllers
     [ApiController]
     public class UserTypeController : ControllerBase
     {
+        // Initializing user type repository
         private readonly UserTypeRepository _userTypeRepository;
 
-
+        // Value is assigned to user type repository
         public UserTypeController(ApplicationDbContext context)
         {
             _userTypeRepository = new UserTypeRepository(context);
 
         }
 
+        // Method to retrieve all user types for Register page dropdown
         [HttpGet]
         public IActionResult Get()
         {
