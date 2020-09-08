@@ -15,7 +15,6 @@ namespace ConnectionPoint.Data
         public DbSet<UserType> UserType { get; set; }
         public DbSet<Compatibility> Compatibility { get; set; }
         public DbSet<Job> Job { get; set; }
-        public DbSet<JobApplication> JobApplication { get; set; }
         public DbSet<PersonalityType> PersonalityType { get; set; }
 
 

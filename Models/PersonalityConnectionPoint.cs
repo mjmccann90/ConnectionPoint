@@ -9,7 +9,11 @@ namespace ConnectionPoint.Models
     public class PersonalityConnectionPoint
     {
         [Required]
-        public JobApplication JobApplication { get; set; }
+        public Job Job { get; set; }
+
+        [Required]
+        public UserProfile Applicant { get; set; }
+
         public Compatibility Compatibility { get; set; }
     }
 }

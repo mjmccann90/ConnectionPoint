@@ -15,10 +15,12 @@ namespace ConnectionPoint.Controllers
     [ApiController]
     public class JobController : ControllerBase
     {
+        // Initializing user profile and job repositories
         private readonly UserProfileRepository _userProfileRepository;
         private readonly JobRepository _jobRepository;
 
 
+        // Value is assigned to user profile and job repositories
         public JobController(ApplicationDbContext context)
         {
             _userProfileRepository = new UserProfileRepository(context);
@@ -26,36 +28,43 @@ namespace ConnectionPoint.Controllers
 
         }
 
+        // Method to retrieve all jobs
         [HttpGet]
         public IActionResult Get()
         {
-            UserProfile currentUserProfile = GetCurrentUserProfile();
-            if (_userProfileRepository.IsCurrentUserManager(currentUserProfile))
-            {
-                return Ok(_jobRepository.GetAll());
-            }
-            else
-            {
-                return Ok(_jobRepository.GetOpenJobs(currentUserProfile.Id));
-            }
+            return Ok(_jobRepository.GetAll());
         }
 
+        // Method to retrieve jobs posted by a manager
+        [HttpGet("{managerId}")]
+        public IActionResult GetByManagerId(int managerId)
+        {
+            var listOfJobs = _jobRepository.GetByManagerId(managerId);
+            if (listOfJobs == null)
+            {
+                return NotFound();
+            }
+            return Ok(listOfJobs);
+        }
+
+        // Method to retrieve user profile using the current user's firebase user id
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //var firebaseUserId = "574dojd22x"; //manager
-            //var firebaseUserId = "ku60n3epn6"; //applicant with no job applications
-            //var firebaseUserId = "5kst523k5t";
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
+        // Method to add a Job
         [HttpPost]
         public IActionResult Post(Job job)
         {
+            var currentUser = GetCurrentUserProfile();
+            job.ManagerId = currentUser.Id;
             _jobRepository.Add(job);
             return CreatedAtAction("Get", new { id = job.Id }, job);
         }
 
+        // Method to update a Job
         [HttpPut("{id}")]
         public IActionResult Put(int id, Job job)
         {
@@ -68,6 +77,7 @@ namespace ConnectionPoint.Controllers
             return NoContent();
         }
 
+        // Method to delete a Job
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

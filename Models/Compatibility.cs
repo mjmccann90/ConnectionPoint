@@ -18,7 +18,6 @@ namespace ConnectionPoint.Models
         public int ManagerPersonalityTypeId { get; set; }
         public PersonalityType ManagerPersonalityType { get; set; }
 
-
         [Required]
         [MaxLength(20)]
         public string CompatibilityScore { get; set; }

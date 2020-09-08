@@ -23,11 +23,5 @@ namespace ConnectionPoint.Repositories
             return _context.PersonalityType
                 .ToList();
         }
-
-        public PersonalityType GetById(int id)
-        {
-            return _context.PersonalityType
-                .First(pT => pT.Id == id);
-        }
     }
 }

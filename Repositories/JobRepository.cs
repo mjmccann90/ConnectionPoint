@@ -26,6 +26,16 @@ namespace ConnectionPoint.Repositories
                 .ToList();
         }
 
+        // Gets jobs by Manager Id
+        public List<Job> GetByManagerId( int managerId)
+        {
+            return _context.Job
+                .Include(j => j.Manager)
+                .Where(j => j.ManagerId == managerId)
+                .ToList();
+        }
+
+        // Gets job by Id
         public Job GetById(int id)
         {
             return _context.Job
@@ -33,29 +43,21 @@ namespace ConnectionPoint.Repositories
                 .First(j => j.Id == id);
         }
 
-        // Gets all the open jobs that haven't been applied for by a user
-        public List<Job> GetOpenJobs(int applicantId)
-        {
-            return _context.Job
-                .Include(j => j.Manager)
-                .Where(j => !(_context.JobApplication
-                    .Where(ja => (j.Id == ja.JobId)
-                        && (ja.ApplicantId == applicantId)).Any()))
-                .ToList();
-        }
-
+        // Adds job
         public void Add(Job job)
         {
             _context.Add(job);
             _context.SaveChanges();
         }
 
+        // Updates job
         public void Update(Job job)
         {
             _context.Entry(job).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
+        // Deletes job
         public void Delete(int id)
         {
             var job = GetById(id);

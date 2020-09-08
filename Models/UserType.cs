@@ -12,8 +12,8 @@ namespace ConnectionPoint.Models
         public string Name { get; set; }
 
         // These read-only static properties correspond to the ID values in the database
-        //  for the "Admin" and "User" user types.
-        public static int ADMIN_TYPE_ID => 1;
-        public static int USER_TYPE_ID => 2;
+        //  for the "Manager" and "Applicant" user types.
+        public static int MANAGER_USER_TYPE_ID => 1;
+        public static int APPLICANT_USER_TYPE_ID => 2;
     }
 }
