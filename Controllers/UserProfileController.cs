@@ -11,12 +11,16 @@ namespace ConnectionPoint.Controllers
     [ApiController]
     public class UserProfileController : ControllerBase
     {
+        // Initializing user profile repository
         private readonly UserProfileRepository _userProfileRepository;
+
+        // Value is assigned to user profile repository
         public UserProfileController(ApplicationDbContext context)
         {
             _userProfileRepository = new UserProfileRepository(context);
         }
 
+        // Method to retrieve user profile by firebase user Id
         [HttpGet("{firebaseUserId}")]
         public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
@@ -28,12 +32,10 @@ namespace ConnectionPoint.Controllers
             return Ok(userProfile);
         }
 
+        // Method to add user profile through the Register page
         [HttpPost]
         public IActionResult Register(UserProfile userProfile)
         {
-            // All newly registered users start out as a "user" user type (i.e. they are not admins)
-            //userProfile.UserTypeId = UserType.USER_TYPE_ID;
-            //userProfile.PersonalityTypeId = 4; // Default to 4 (ENFJ)
             _userProfileRepository.Add(userProfile);
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);
