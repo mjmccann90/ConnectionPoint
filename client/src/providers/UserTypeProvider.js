@@ -21,14 +21,10 @@ export const UserTypeProvider = (props) => {
     };
 
     const getAllUserType = () => {
-        getToken().then((token) =>
-            fetch(apiUrl, {
+            return fetch(apiUrl, {
                 method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
             }).then(resp => resp.json())
-                .then(setUserType));
+                .then(setUserType);
     };
 
     return (

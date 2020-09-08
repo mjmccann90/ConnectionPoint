@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect,useRef } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
@@ -20,6 +20,11 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userTypeId, setUserType] = useState("");
   const [personalityTypeId, setPersonalityType] = useState("");
+
+   useEffect(() => {
+     getAllUserType()
+     getAllPersonalityType()
+ }, []);
 
 
   const registerClick = (e) => {
@@ -58,7 +63,6 @@ export default function Register() {
                     <select
                         defaultValue=""
                         name="userType"
-                        ref={userType}
                         id="userTypeSelectId"
                         className="form-control"
                         onChange={e => setUserType(e.target.value)}
@@ -81,7 +85,6 @@ export default function Register() {
                     <select
                         defaultValue=""
                         name="personalityType"
-                        ref={personalityType}
                         id="personalityTypeSelecId"
                         className="form-control"
                         onChange={e => setPersonalityType(e.target.value)}

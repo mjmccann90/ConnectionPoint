@@ -21,14 +21,10 @@ export const PersonalityTypeProvider = (props) => {
     };
 
     const getAllPersonalityType = () => {
-        getToken().then((token) =>
-            fetch(apiUrl, {
+            return fetch(apiUrl, {
                 method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
             }).then(resp => resp.json())
-                .then(setPersonalityType));
+                .then(setPersonalityType);
     };
 
     return (
